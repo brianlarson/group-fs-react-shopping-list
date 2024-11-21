@@ -2,10 +2,9 @@
 -- It is also helpful to include some test data
 CREATE TABLE items (
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(80) NOT NULL,
-	quantity NUMERIC NOT NULL,
-	unit VARCHAR(20) NOT NULL,
-	
+	name VARCHAR(80) NULL,
+	quantity NUMERIC NULL,
+	unit VARCHAR(20) NULL	
 );
 
 INSERT INTO items (name, quantity, unit)
