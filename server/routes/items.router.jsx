@@ -18,4 +18,29 @@ router.get("/", (req, res) => {
 
 })
 
+router.post("/", (req, res) => {
+  const newItem = req.body 
+  const sqlText = ` 
+        INSERT INTO items
+            (name, quantity, unit)
+            VALUES
+            ($1, $2, $3);
+    ` 
+})
+const sqlValues = [
+  newCreature.name,
+  newCreature.origin
+]
+poolquery(newItem, sqlText)
+.then((dbResult) => {
+  console.log('item added to database: ', newItem)
+  res.sendStatus(201)
+})
+.catch((error) => {
+  console.log('error making database query: ', error)
+  res.sendStatus(500)
+})
+
+
+
 module.exports = router;
