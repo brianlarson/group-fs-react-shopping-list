@@ -5,7 +5,6 @@ import axios from 'axios';
 import Header from "../Header/Header.jsx";
 import "./App.css";
 
-
 function App() {
 
   // Set state vars
@@ -16,8 +15,8 @@ function App() {
     fetchItems();
   }, []);
 
-  // Get items from db and show on DOM
-  function fetchItems() {
+  // GET items from db and show on DOM
+  const fetchItems = () => {
     axios({
       method: "GET",
       url: "/api/items"
@@ -30,10 +29,27 @@ function App() {
     });
   }
 
+  // Delete an item from the db
+  const removeItem = () => {
+    console.log('removeItem() called…');
+    const itemId = 1;
+    axios({
+      method: "DELETE",
+      url: `/api/items/${itemId}`
+    })
+      .then((response) => {
+        // setItems(response.data);
+    })
+      .catch((error) => {
+        console.log("Error with GET /api/items…", error);
+    });
+  }
+
   return (
     <div className="App">
       <Header />
       <main className="notice">
+
         <section>
           <h2>Add an Item</h2>
           <form>
@@ -57,40 +73,24 @@ function App() {
 
           </form>
         </section>
+
         <section>
+        
           <h2>Shopping List</h2>
           <button>Reset</button>
           &nbsp; &nbsp;
           <button>Clear</button>
+        
           <div>
+            
             <div className="notice">
               <h3>Apples</h3>
               <p>5 lbs.</p>
               <button>Buy</button>
               &nbsp;&nbsp;
-              <button>Remove</button>
-            </div>           
-            <div className="notice">
-              <h3>Apples</h3>
-              <p>5 lbs.</p>
-              <button>Buy</button>
-              &nbsp;&nbsp;
-              <button>Remove</button>
-            </div>           
-            <div className="notice">
-              <h3>Apples</h3>
-              <p>5 lbs.</p>
-              <button>Buy</button>
-              &nbsp;&nbsp;
-              <button>Remove</button>
-            </div>           
-            <div className="notice">
-              <h3>Apples</h3>
-              <p>5 lbs.</p>
-              <button>Buy</button>
-              &nbsp;&nbsp;
-              <button>Remove</button>
-            </div>           
+              <button onClick={removeItem} >Remove</button>
+            </div>
+
           </div>
         </section>
       </main>

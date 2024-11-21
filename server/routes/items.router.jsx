@@ -18,4 +18,18 @@ router.get("/", (req, res) => {
 
 })
 
+router.delete("/", (req, res) => {
+
+  const statement = ``;
+  pool.query(statement)
+    .then((response) => {
+      
+  })
+    .catch((error) => {
+      console.log('DELETE request error:', error);
+      res.sendStatus(500);
+  });
+
+})
+
 module.exports = router;
