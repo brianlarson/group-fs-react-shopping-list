@@ -5,4 +5,5 @@
 - [ ] Set up POST request
 - [ ] Set up DELETE request
 - [ ] Set up PUT request
-- [ ] Set up HTML/UI in `App.jsx`
+- [ ] Set up database and data structure
+- [X] Set up HTML/UI in `App.jsx`
