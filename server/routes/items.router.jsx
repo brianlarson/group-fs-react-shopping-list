@@ -26,20 +26,22 @@ router.post("/", (req, res) => {
             VALUES
             ($1, $2, $3);
     ` 
+    const sqlValues = [
+      newItem.name,
+      newItem.quantity,
+      newItem.unit
+    ]
+    pool.query(sqlText, sqlValues)
+    .then((dbResult) => {
+      console.log('item added to database: ', newItem)
+      res.sendStatus(201)
+    })
+    .catch((error) => {
+      console.log('error making database query: ', error)
+      res.sendStatus(500)
+    })
 })
-const sqlValues = [
-  newCreature.name,
-  newCreature.origin
-]
-poolquery(newItem, sqlText)
-.then((dbResult) => {
-  console.log('item added to database: ', newItem)
-  res.sendStatus(201)
-})
-.catch((error) => {
-  console.log('error making database query: ', error)
-  res.sendStatus(500)
-})
+
 
 
 

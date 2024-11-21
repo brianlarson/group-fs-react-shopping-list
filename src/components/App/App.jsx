@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   // Get items from db and show on DOM
-  const fetchItems = () => {
+  const fetchItems = () => { 
     axios({
       method: "GET",
       url: "/api/items"
