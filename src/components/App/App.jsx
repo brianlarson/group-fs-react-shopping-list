@@ -8,6 +8,28 @@ import "./App.css";
 
 function App() {
 
+  // Set state vars
+  const [items, setItems] = useState([]);
+
+  // Fetch items on load
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  // Get items from db and show on DOM
+  function fetchItems() {
+    axios({
+      method: "GET",
+      url: "/api/items"
+    })
+      .then((response) => {
+        setItems(response.data);
+    })
+      .catch((error) => {
+        console.log("Error with GET /api/items…", error);
+    });
+  }
+
   return (
     <div className="App">
       <Header />
