@@ -2,17 +2,14 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Header from "../Header/Header.jsx"; // ? ASK KEY ABOUT .JSX
+ // ? ASK ABOUT ODD NEED FOR .jsx in file name
+import Header from "../Header/Header.jsx";
 import "./App.css";
-
 
 function App() {
 
   // Set state vars
   const [items, setItems] = useState([]);
-  const [newItemName, setNewItemName] = useState('')
-  const [newItemQuantity, setNewItemQuantity] = useState('')
-  const [newItemUnit, setNewItemUnit] = useState('')
 
   // Fetch items on load
   useEffect(() => {
@@ -31,27 +28,6 @@ function App() {
       .catch((error) => {
         console.log("Error with GET /api/items…", error);
     });
-  }
-
-  const addItems = () => {
-    console.log('adding items...')
-
-    axios({
-        method: "POST",
-        url: "/api/items",
-        data: {
-            name: newItemName,
-            quantity: newItemQuantity,
-            unit: newItemUnit
-        }
-    })
-    .then((response) => {
-        fetchItems()
-        setItems('') // * clear inputs
-    })
-    .catch((error) => {
-        console.log('error in addItems: ', error)
-    })
   }
 
   return (
