@@ -23,10 +23,27 @@ function App() {
       url: "/api/items"
     })
       .then((response) => {
+        console.log('/api/items GET request sent successfully…');
         setItems(response.data);
     })
       .catch((error) => {
         console.log("Error with GET /api/items…", error);
+    });
+  }
+
+  // Add a new item to the db and show on DOM
+  const addItem = () => {
+    axios({
+      method: "POST",
+      url: "/api/items",
+      data: { name: "Peaches", quantity: '3', units: 'Bags' }
+    })
+      .then((response) => {
+        console.log('/api/items POST request sent successfully…');
+        setItems(response.data);
+    })
+      .catch((error) => {
+        console.log("Error with POST /api/items…", error);
     });
   }
 
